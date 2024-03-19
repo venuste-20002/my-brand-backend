@@ -1,5 +1,13 @@
-.node-modules
-.package-lock.json
-.package.json
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore package-lock.json
+package-lock.json
+
+# Ignore package.json
+package.json
+
+# Ignore environment variables file
 .env
+
 
