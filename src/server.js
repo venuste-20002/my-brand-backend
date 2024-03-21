@@ -30,7 +30,12 @@ const swaggerOptions = {
     servers: [{
       url: 'http://localhost:3005',
       description: 'local server'
-    }]
+    },
+    {
+      url: 'https://my-brand-backend-155.onrender.com/',
+      description: 'deployed server'
+    }
+  ],
   },
   apis:[
     path.resolve(_dirname, 'routes', 'messageRoutes.js'),
