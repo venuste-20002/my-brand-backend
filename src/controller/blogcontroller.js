@@ -1,98 +1,84 @@
-const Blog = require ("../model/blogschema.js"); 
-const mongoose = require ("mongoose");
-const { JWT } = require ("../helper/jwt.js");
-const bcrypt = require ("bcrypt");
+const Blog = require("../model/blogschema.js");
+const Comments = require("../model/commentschema.js");
+const mongoose = require("mongoose");
+const { JWT } = require("../helper/jwt.js");
+const bcrypt = require("bcrypt");
+const multer = require("multer");
 
 
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./images/image"); // Destination folder for storing uploaded files
+  },
+  filename: (req, file, callback) => {
+    const filename = `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`;
+    callback(null, filename); // Setting the filename for the uploaded file
+  }
+});
+// Multer upload configuration
+const upload = multer({ storage: storage });
+module.exports = { upload };
 
-module.exports= class UserController {
+module.exports = class UserController {
   static async createBlog(req, res) {
-      try {
-          const { title,description, content, tags } = req.body;
-          const blog = await Blog.create({
-              title,
-              description,
-              content,
-              author: req.user.userId,
-              tags,
-              comments: [], // Initialize comments array
-              likes: [],    // Initialize likes array
-          });
-          return res.status(200).json({
-              status: 'success',
-              data: blog,
-          });
-      } catch (error) {
-          return res.status(500).json({
-              status: 'error',
-              message: error.message,
-          });
-      }
+    try {
+      const { title, description, content, tags } = req.body;
+      console.log(req.body);
+      const image = req.file ? req.file.filename : "";
+
+      // Check if title and content are provided
+      const blog = await Blog.create({
+        title,
+        description,
+        content,
+        image:image,
+        author: req.user.userId,
+        tags,
+        comments: [], // Initialize comments array
+        likes: [],    // Initialize likes array
+      });
+
+      return res.status(200).json({
+        status: 'success',
+        data: blog,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 'error',
+        message: error.message,
+      });
+    }
   }
 
-  // Add comment to a blog post
-  static async addComment(req, res) {
-      try {
-          const { id } = req.params;
-          const { comment } = req.body;
-
-          if (!mongoose.Types.ObjectId.isValid(id)) {
-              return res.status(400).json({
-                  status: 'fail',
-                  message: 'Invalid blog ID',
-              });
-          }
-          const blog = await Blog.findByIdAndUpdate(
-              id,
-              { $push: { comments: comment } }, // Automatically add the comment to the blog's comments array
-              { new: true }
-          );
-
-          return res.status(200).json({
-              status: 'success',
-              data: blog,
-          });
-      } catch (error) {
-          return res.status(500).json({
-              status: 'error',
-              message: error.message,
-          });
-      }
-  }
-  
   // Like a blog post
   static async likeBlog(req, res) {
-      try {
-          const { id } = req.params;
-          const { userId } = req.user;
-          if (!mongoose.Types.ObjectId.isValid(id)) {
-              return res.status(400).json({
-                  status: 'fail',
-                  message: 'Invalid blog ID',
-              });
-          }
-          const blog = await Blog.findByIdAndUpdate(
-              id,
-              { $addToSet: { likes: userId } }, 
-              { new: true }
-          );
-
-          return res.status(200).json({
-              status: 'success',
-              data: blog,
-          });
-      } catch (error) {
-          return res.status(500).json({
-              status: 'error',
-              message: error.message,
-          });
+    try {
+      const { id } = req.params;
+      const { userId } = req.user;
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({
+          status: 'fail',
+          message: 'Invalid blog ID',
+        });
       }
+      const blog = await Blog.findByIdAndUpdate(
+        id,
+        { $addToSet: { likes: userId } },
+        { new: true }
+      );
+
+      return res.status(200).json({
+        status: 'success',
+        data: blog,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 'error',
+        message: error.message,
+      });
+    }
   }
-  
-
-
-
-
 
   static async getAllBlogs(req, res) {
     try {
@@ -113,8 +99,6 @@ module.exports= class UserController {
     try {
       const { id } = req.params;
 
-      console.log(req.user)
-
       if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({
           status: "fail",
@@ -131,9 +115,11 @@ module.exports= class UserController {
         });
       }
 
+      const comments = await Comments.find({ blogId: id })
+
       return res.status(200).json({
         status: "success",
-        data: blog,
+        data: { blog, comments }
       });
     } catch (error) {
       return res.status(500).json({
@@ -145,10 +131,11 @@ module.exports= class UserController {
 
   static async updateBlog(req, res) {
 
-    console.log('I am called')
+    console.log('I am called by venuste');
+
     try {
       const { id } = req.params;
-      const { title, content, tags } = req.body;
+      const { title, description, content, tags } = req.body;
 
       if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({
@@ -157,9 +144,11 @@ module.exports= class UserController {
         });
       }
 
+      // console.log(id);
+
       const updatedBlog = await Blog.findByIdAndUpdate(
         id,
-        { title, content, tags },
+        { title, description, content, tags },
         { new: true }
       );
 
@@ -170,10 +159,12 @@ module.exports= class UserController {
         });
       }
 
+
       return res.status(200).json({
         status: "success",
         data: updatedBlog,
       });
+      
     } catch (error) {
       return res.status(500).json({
         status: "error",

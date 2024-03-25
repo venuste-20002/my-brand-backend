@@ -41,6 +41,7 @@ const swaggerOptions = {
     path.resolve(_dirname, 'routes', 'messageRoutes.js'),
     path.resolve(_dirname, 'routes', 'blogRoutes.js'),
     path.resolve(_dirname, 'routes', 'routes.js'),
+    path.resolve(_dirname, 'routes', 'commentRoutes.js')
   ]
 }
 

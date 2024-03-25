@@ -5,10 +5,9 @@ const { Types } = require ("mongoose");
 dotenv.config();
 
 module.exports = class AuthMiddleware{
+    
 
     static async isAuthenticated(req,res,next){
-
-        console.log('called for updates');
         
         try {
             const {authorization} = req.headers;

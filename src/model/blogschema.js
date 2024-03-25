@@ -1,4 +1,4 @@
-const mongoose = require ("mongoose");
+const mongoose = require("mongoose");
 
 const blogPostSchema = new mongoose.Schema({
     title: {
@@ -7,8 +7,13 @@ const blogPostSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        require:true
-},
+        required: true
+    },
+    image: {
+        type: String,
+        default: "default.png",
+        trim: true
+    },
     content: {
         type: String,
         required: true
@@ -21,15 +26,9 @@ const blogPostSchema = new mongoose.Schema({
         type: [String],
         required: true
     },    
-    comments: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Comment'
-        }
-    ],
     likes: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             ref: 'user'
         }
     ],
@@ -48,4 +47,4 @@ blogPostSchema.pre('save', function (next) {
     next();
 });
 
-module.exports= new mongoose.model('BlogPost', blogPostSchema);
+module.exports = mongoose.model('BlogPost', blogPostSchema);

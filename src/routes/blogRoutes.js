@@ -1,9 +1,23 @@
-const { Router } = require ("express");
+const { Router } = require("express");
 const BlogController = require("../controller/blogcontroller.js");
-const AuthMiddleware = require( "../middleware/authmiddleware.js");
-
+const AuthMiddleware = require("../middleware/authmiddleware.js");
+const multer = require('multer');
+const { updateOne } = require("../model/blogschema.js");
 const router = Router();
 
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./images/image"); 
+  },
+  filename: (req, file, callback) => {
+    const filename = `${file.fieldname}_${Date.now()}${file.originalname.match(/\.[0-9a-z]+$/i)[0]}`;
+    callback(null, filename); 
+  }
+});
+
+// Multer upload configuration
+const upload = multer({ storage: storage });
 
 /**
  * @swagger
@@ -19,6 +33,9 @@ const router = Router();
  *     BlogInput:
  *       type: object
  *       properties:
+ *         image:
+ *          type: string
+ *          format: binary
  *         title:
  *           type: string
  *         description:
@@ -29,10 +46,7 @@ const router = Router();
  *           type: array
  *           items:
  *             type: string
- *       required:
- *         - title
- *         - description
- *         - content
+ *    
  *   securitySchemes:
  *     bearerAuth:
  *       type: apiKey
@@ -51,7 +65,7 @@ const router = Router();
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             $ref: '#/components/schemas/BlogInput'
  *     responses:
@@ -62,7 +76,7 @@ const router = Router();
  *       '500':
  *         description: Server error
  */
-router.post("/create", AuthMiddleware.isAuthenticated, BlogController.createBlog);
+router.post("/create", AuthMiddleware.isAuthenticated, upload.single('image'), BlogController.createBlog);
 
 /** 
  * @swagger
@@ -161,39 +175,7 @@ router.put("/:id", AuthMiddleware.isAuthenticated, BlogController.updateBlog);
  */
 router.delete("/:id", AuthMiddleware.isAuthenticated, AuthMiddleware.checkRole, BlogController.deleteBlog);
 
-/**
- * @swagger
- * /api/v1/blogs/{id}/comments:
- *   post:
- *     summary: Add a comment to a blog post
- *     tags: [Blogs]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: ID of the blog post
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               comment:
- *                 type: string
- *     responses:
- *       '200':
- *         description: Comment added successfully
- *       '401':
- *         description: Unauthorized request
- *       '404':
- *         description: Blog post not found
- *       '500':
- *         description: Server error
- */
-router.post("/:id/comments", AuthMiddleware.isAuthenticated, BlogController.addComment);
+
 
 /**
  * @swagger
@@ -220,5 +202,4 @@ router.post("/:id/comments", AuthMiddleware.isAuthenticated, BlogController.addC
  */
 router.post("/:id/like", AuthMiddleware.isAuthenticated, BlogController.likeBlog);
 
-
-module.exports= router;
+module.exports = router;
