@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/routes/allRoutes.js</title>
+    <title>Code coverage report for src/utils/cloudinary.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/routes</a> allRoutes.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> cloudinary.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -74,10 +74,7 @@
 <a name='L9'></a><a href='#L9'>9</a>
 <a name='L10'></a><a href='#L10'>10</a>
 <a name='L11'></a><a href='#L11'>11</a>
-<a name='L12'></a><a href='#L12'>12</a>
-<a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L12'></a><a href='#L12'>12</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -88,24 +85,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Router } = require ("express");
-const blogRoutes = require ('./blogRoutes.js');
-const loginRoutes = require ('./routes.js');
-const messageRoutes = require ('./messageRoutes.js');
-const commentRoutes = require ('./commentRoutes.js')
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const cloudinary = require('cloudinary').v2;
+const dotenv = require('dotenv')
 &nbsp;
-const router = Router();
+dotenv.config();
 &nbsp;
-router.use('/blogs', blogRoutes)
-router.use('/users', loginRoutes)
-router.use('/messages',messageRoutes)
-router.use('/comments', commentRoutes)
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+})
 &nbsp;
-module.exports= router;
-&nbsp;</pre></td></tr></table></pre>
+module.exports = cloudinary</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

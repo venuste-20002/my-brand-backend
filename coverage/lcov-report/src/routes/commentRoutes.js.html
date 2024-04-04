@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/routes/routes.js</title>
+    <title>Code coverage report for src/routes/commentRoutes.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/routes</a> routes.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/routes</a> commentRoutes.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>142/142</span>
+                <span class='fraction'>194/194</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>142/142</span>
+                <span class='fraction'>194/194</span>
             </div>
         
             
@@ -205,7 +205,60 @@
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
 <a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -347,122 +400,222 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Router } = require ("express");
-const LoginController = require ("../controller/logincontroller.js");
-const AuthMiddleware = require ("../middleware/authmiddleware.js");
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Router } = require("express");
+const CommentController = require("../controller/commentcontroller.js");
+const AuthMiddleware = require("../middleware/authmiddleware.js");
 &nbsp;
 const router = Router();
 &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 /**
  * @swagger
- * tags:
- *   name: Users
- *   description: User management endpoints
- */
-&nbsp;
-/**
- * @swagger
- * /api/v1/users/register:
+ * /api/v1/comments/create:
  *   post:
- *     summary: Register a new user
- *     tags: [Users]
+ *     summary: Add a new comment
+ *     tags: [Comments]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *               role:
- *                 type: string
+ *             $ref: '#/components/schemas/CommentInput'
  *     responses:
  *       '200':
- *         description: User registered successfully
- *       '400':
- *         description: Bad request
+ *         description: Comment added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
  *       '500':
  *         description: Server error
  */
-router.post("/register", LoginController.registerUser);
-&nbsp;
-/**
- * @swagger
- * /api/v1/users/users:
- *   get:
- *     summary: Retrieve all users
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       '200':
- *         description: Retrieved all users successfully
- *       '401':
- *         description: Unauthorized request
- *       '500':
- *         description: Server error
- */
-router.get("/users",  LoginController.getAllUsers);
-// AuthMiddleware.isAuthenticated, AuthMiddleware.checkRole,
 &nbsp;
 /**
  * @swagger
  * components:
  *   schemas:
- *     LoginInput:
+ *     CommentInput:
  *       type: object
  *       properties:
+ *         blogId:
+ *           type: string
+ *           description: ID of the blog the comment belongs to
+ *         name:
+ *           type: string
+ *           description: Name of the commenter
  *         email:
  *           type: string
  *           format: email
- *           description: User's email address
- *         password:
+ *           description: Email of the commenter
+ *         comment:
  *           type: string
- *           format: password
- *           description: User's password
+ *           description: Comment content
  *       required:
+ *         - blogId
+ *         - name
  *         - email
- *         - password
+ *         - comment
+ *     Comment:
+ *       type: object
+ *       properties:
+ *         blogId:
+ *           type: string
+ *           description: ID of the blog the comment belongs to
+ *         name:
+ *           type: string
+ *           description: Name of the commenter
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: Email of the commenter
+ *         comment:
+ *           type: string
+ *           description: Comment content
+ *         _id:
+ *           type: string
+ *           description: Unique identifier for the comment
+ *       required:
+ *         - name
+ *         - email
+ *         - comment
+ *         - blogId
  */
+router.post("/create", CommentController.addComment);
 &nbsp;
 /**
  * @swagger
- * /api/v1/users/login:
+ * /api/v1/comments:
+ *   get:
+ *     summary: Get all comments
+ *     tags: [Comments]
+ *     responses:
+ *       '200':
+ *         description: Retrieved all comments successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Comment'
+ *       '500':
+ *         description: Server error
+ */
+router.get("/", CommentController.getAllComments);
+&nbsp;
+&nbsp;
+&nbsp;
+/**
+ * @swagger
+ * /api/v1/comments/create:
  *   post:
- *     summary: Log in user
- *     tags: [Users]
+ *     summary: Add a new comment
+ *     tags: [Comments]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/LoginInput'
+ *             $ref: '#/components/schemas/CommentInput'
  *     responses:
  *       '200':
- *         description: User logged in successfully
- *       '400':
- *         description: Incorrect credentials
- *       '404':
- *         description: Account does not exist
+ *         description: Comment added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
  *       '500':
  *         description: Server error
  */
-router.post("/login", LoginController.loginUser);
+&nbsp;
+router.get("/:id", CommentController.getCommentById);
+&nbsp;
 &nbsp;
 /**
  * @swagger
- * /api/v1/users/delete/{id}:
+ * /api/v1/comments/{id}:
+ *   get:
+ *     summary: Get a comment by ID
+ *     tags: [Comments]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID of the comment
+ *     responses:
+ *       '200':
+ *         description: Retrieved comment by ID successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
+ *       '400':
+ *         description: Invalid comment ID
+ *       '404':
+ *         description: Comment not found
+ *       '500':
+ *         description: Server error
+ */
+&nbsp;
+/**
+ * @swagger
+ * /api/v1/comments/{id}:
  *   delete:
- *     summary: Delete a user by ID
- *     tags: [Users]
+ *     summary: Delete a comment by ID
+ *     tags: [Comments]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -471,24 +624,30 @@ router.post("/login", LoginController.loginUser);
  *         schema:
  *           type: string
  *         required: true
- *         description: ID of the user to delete
+ *         description: ID of the comment
  *     responses:
  *       '200':
- *         description: User deleted successfully
+ *         description: Comment deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
  *       '401':
  *         description: Unauthorized request
+ *       '400':
+ *         description: Invalid comment ID
  *       '404':
- *         description: User not found
+ *         description: Comment not found
  *       '500':
  *         description: Server error
  */
-router.delete("/:id", AuthMiddleware.isAuthenticated, AuthMiddleware.checkRole, LoginController.deleteUser);
 &nbsp;
 &nbsp;
+router.delete("/:id", AuthMiddleware.isAuthenticated, CommentController.deleteComment);
 &nbsp;
 &nbsp;
+module.exports = router;
 &nbsp;
-module.exports= router;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

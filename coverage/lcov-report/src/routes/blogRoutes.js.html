@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.04% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>221/221</span>
+                <span class='fraction'>201/205</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.04% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>221/221</span>
+                <span class='fraction'>201/205</span>
             </div>
         
             
@@ -268,23 +268,7 @@
 <a name='L203'></a><a href='#L203'>203</a>
 <a name='L204'></a><a href='#L204'>204</a>
 <a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L206'></a><a href='#L206'>206</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -294,8 +278,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -485,32 +473,26 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Router } = require ("express");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Router } = require("express");
 const BlogController = require("../controller/blogcontroller.js");
-const AuthMiddleware = require( "../middleware/authmiddleware.js");
-&nbsp;
+const AuthMiddleware = require("../middleware/authmiddleware.js");
+const multer = require('multer');
+const { updateOne } = require("../model/blogschema.js");
 const router = Router();
 &nbsp;
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: <span class="fstat-no" title="function not covered" >(req, file, callback) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    callback(null, "./images/image"); </span>
+  },
+  filename: <span class="fstat-no" title="function not covered" >(req, file, callback) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const filename = `${file.fieldname}_${Date.now()}${file.originalname.match(/\.[0-9a-z]+$/i)[0]}`;</span>
+<span class="cstat-no" title="statement not covered" >    callback(null, filename); </span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+});
+&nbsp;
+// Multer upload configuration
+const upload = multer({ storage: storage });
 &nbsp;
 /**
  * @swagger
@@ -526,17 +508,20 @@ const router = Router();
  *     BlogInput:
  *       type: object
  *       properties:
+ *         image:
+ *          type: string
+ *          format: binary
  *         title:
  *           type: string
+ *         description:
+ *            type: string
  *         content:
  *           type: string
  *         tags:
  *           type: array
  *           items:
  *             type: string
- *       required:
- *         - title
- *         - content
+ *    
  *   securitySchemes:
  *     bearerAuth:
  *       type: apiKey
@@ -555,7 +540,7 @@ const router = Router();
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             $ref: '#/components/schemas/BlogInput'
  *     responses:
@@ -566,7 +551,7 @@ const router = Router();
  *       '500':
  *         description: Server error
  */
-router.post("/create", AuthMiddleware.isAuthenticated, BlogController.createBlog);
+router.post("/create", AuthMiddleware.isAuthenticated, upload.single('image'), BlogController.createBlog);
 &nbsp;
 /** 
  * @swagger
@@ -665,39 +650,7 @@ router.put("/:id", AuthMiddleware.isAuthenticated, BlogController.updateBlog);
  */
 router.delete("/:id", AuthMiddleware.isAuthenticated, AuthMiddleware.checkRole, BlogController.deleteBlog);
 &nbsp;
-/**
- * @swagger
- * /api/v1/blogs/{id}/comments:
- *   post:
- *     summary: Add a comment to a blog post
- *     tags: [Blogs]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: ID of the blog post
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               comment:
- *                 type: string
- *     responses:
- *       '200':
- *         description: Comment added successfully
- *       '401':
- *         description: Unauthorized request
- *       '404':
- *         description: Blog post not found
- *       '500':
- *         description: Server error
- */
-router.post("/:id/comments", AuthMiddleware.isAuthenticated, BlogController.addComment);
+&nbsp;
 &nbsp;
 /**
  * @swagger
@@ -724,8 +677,7 @@ router.post("/:id/comments", AuthMiddleware.isAuthenticated, BlogController.addC
  */
 router.post("/:id/like", AuthMiddleware.isAuthenticated, BlogController.likeBlog);
 &nbsp;
-&nbsp;
-module.exports= router;
+module.exports = router;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -733,7 +685,7 @@ module.exports= router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-11T16:28:10.845Z
+                at 2024-04-04T02:48:50.883Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
