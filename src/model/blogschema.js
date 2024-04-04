@@ -10,9 +10,8 @@ const blogPostSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String,
-        default: "default.png",
-        trim: true
+      data:Buffer,
+      contentType:String
     },
     content: {
         type: String,
@@ -48,3 +47,4 @@ blogPostSchema.pre('save', function (next) {
 });
 
 module.exports = mongoose.model('BlogPost', blogPostSchema);
+ 

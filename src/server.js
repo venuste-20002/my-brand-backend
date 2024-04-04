@@ -18,7 +18,25 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use("/api/v1", router);
-app.use('/api/upload', uploadRoute)
+app.post('/api/upload',(req,res) => {
+  upload(req,res,(err)=>{
+    if (err){
+      console.log(err)
+    }
+    else {
+      const newImage = new imageModel({
+        name :req.body.name ,
+        image:{
+          data:req.file.file,
+          contentType:"image/png"
+        }
+      })
+      newImage.save()
+        .then(() => res.send('successfully upload'))
+        .catch(err=>console.log(err))
+    }
+  })
+  })
 
 const swaggerOptions = {
   definition: {

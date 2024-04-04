@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon ./src/server.js",
-    "start": "node ./src/server.js"
-    
+    "start": "node ./src/server.js",
+    "coverage":"nyc report --reporter=text-lcon | coveralls"
   },
   "keywords": [],
   "author": "",

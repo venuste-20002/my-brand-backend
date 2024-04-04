@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const multer = require("multer");
 
 
-// Multer storage configuration
+// Multer storage configuration   
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, "./images/image"); // Destination folder for storing uploaded files
